@@ -2,8 +2,8 @@ public class User {
     private String nickname;
     private int money;
 
-    public void setName(String name) {
-        this.nickname = name;
+    User(String nickname) {
+        this.nickname = nickname;
     }
 
     public void setMoney(int money) {
@@ -16,5 +16,10 @@ public class User {
     
     public int getMoney() {
         return this.money;
+    }
+
+    @Override
+    public String toString() {
+        return "Nickname: " + this.nickname + "\nBalance: " + this.money; 
     }
 }

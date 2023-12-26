@@ -5,6 +5,15 @@ public class Computer {
     private int rentCost;
     private float hoursLeft;
 
+    Computer(User user, boolean isVip, int hours) {
+        setVip(isVip);
+        setHours(user, hours);
+        if (getHoursLeft() == 0) {
+            System.out.println("Your booking was canceled");
+            return;
+        }
+    }
+
     public void setVip(boolean isVip) {
         this.isVip = isVip;
         if (isVip) {
@@ -37,5 +46,13 @@ public class Computer {
 
     public int getCost() {
         return this.rentCost;
+    }
+
+    @Override
+    public String toString() {
+        if (isTaken) {
+            return user.getName() + " " + isVip;
+        }
+        return "free " + isVip;
     }
 }
