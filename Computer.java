@@ -3,7 +3,7 @@ public class Computer {
     private boolean isTaken;
     private User user;
     private int rentCost;
-    private float hoursLeft;
+    private int hoursLeft;
 
     Computer(User user, boolean isVip, int hours) {
         setVip(isVip);
@@ -12,6 +12,7 @@ public class Computer {
             System.out.println("Your booking was canceled");
             return;
         }
+        user.setComputer(this);
     }
 
     public void setVip(boolean isVip) {
@@ -36,11 +37,13 @@ public class Computer {
             System.out.println("Your money is not enough");
             return;
         }
+        setTaken(true);
+        setUser(user);
         user.setMoney(user.getMoney() - hours * this.rentCost);
         this.hoursLeft = hours;
     }
 
-    public float getHoursLeft() {
+    public int getHoursLeft() {
         return this.hoursLeft;
     } 
 
@@ -51,7 +54,7 @@ public class Computer {
     @Override
     public String toString() {
         if (isTaken) {
-            return user.getName() + " " + isVip;
+            return user.getName() + " " + isVip + " " + hoursLeft;
         }
         return "free " + isVip;
     }
