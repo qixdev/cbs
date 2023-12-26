@@ -1,5 +1,3 @@
-package cbs;
-
 public class User {
     private String nickname;
     private int money;

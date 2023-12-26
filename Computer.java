@@ -1,5 +1,3 @@
-package cbs;
-
 public class Computer {
     private boolean isVip;
     private boolean isTaken;
@@ -36,4 +34,8 @@ public class Computer {
     public float getHoursLeft() {
         return this.hoursLeft;
     } 
+
+    public int getCost() {
+        return this.rentCost;
+    }
 }
