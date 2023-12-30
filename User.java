@@ -1,6 +1,6 @@
 public class User {
     private String nickname;
-    private int money;
+    private long money;
     private Computer computer;
    // private int id;
 
@@ -9,15 +9,15 @@ public class User {
         //this.id = CompClub.users.size() + 1;
     }
 
-    public void setMoney(int money) {
-        this.money = money;
+    public void setMoney(long money) {
+        this.money = this.money + money;
     }
 
     public String getName() {
         return this.nickname;
     }
     
-    public int getMoney() {
+    public long getMoney() {
         return this.money;
     }
 

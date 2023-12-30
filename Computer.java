@@ -3,9 +3,9 @@ public class Computer {
     private boolean isTaken;
     private User user;
     private int rentCost;
-    private int hoursLeft;
+    private long hoursLeft;
 
-    Computer(User user, boolean isVip, int hours) {
+    Computer(User user, boolean isVip, long hours) {
         setVip(isVip);
         setHours(user, hours);
         if (getHoursLeft() == 0) {
@@ -32,7 +32,7 @@ public class Computer {
         this.user = user;
     }
 
-    public void setHours(User user, int hours) {
+    public void setHours(User user, long hours) {
         if (user.getMoney() < hours * this.rentCost) {
             System.out.println("Your money is not enough");
             return;
@@ -43,11 +43,11 @@ public class Computer {
         this.hoursLeft = hours;
     }
 
-    public int getHoursLeft() {
+    public long getHoursLeft() {
         return this.hoursLeft;
-    } 
+    }
 
-    public int getCost() {
+    public long getCost() {
         return this.rentCost;
     }
 

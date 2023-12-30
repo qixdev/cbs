@@ -73,7 +73,6 @@ public class CompClub {
         String nickname = scan.nextLine();
         User newUser = new User(nickname);
         users.add(newUser);
-        
         return;
     }
 
@@ -88,9 +87,8 @@ public class CompClub {
         Scanner scan = new Scanner(System.in);
         User user = getUser();
         System.out.print("How much money you want to add: ");
-        int money = scan.nextInt();
+        long money = scan.nextLong();
         user.setMoney(money);
-        
     }
 
     public static void bookComputer() {
@@ -118,17 +116,16 @@ public class CompClub {
                 break;
         }
         System.out.print("How many hours do you want to book: ");
-        int hours = scan.nextInt();
+        long hours = scan.nextInt();
         Computer computer = new Computer(user, isVip, hours);
         computers.add(computer);
-        
     }
 
     public static void extendSession() {
         Scanner scan = new Scanner(System.in);
         User user = getUser();
         System.out.print("For how long do you want to extend session: ");
-        int hours = scan.nextInt();
+        long hours = scan.nextLong();
         Computer computer = user.getComputer();
         computer.setHours(user, computer.getHoursLeft()+hours);
     }
@@ -136,9 +133,8 @@ public class CompClub {
     public static User getUser() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Type id of your account: ");
-        int id = scan.nextInt();
-        
-        return users.get(id);
+            int id = scan.nextInt();
+        return users.get(Math.toIntExact(id));
     }
 
     public static void listComputers() {
