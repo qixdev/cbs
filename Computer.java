@@ -1,4 +1,4 @@
-public class Computer {
+class Computer {
     private boolean isVip;
     private boolean isTaken;
     private User user;

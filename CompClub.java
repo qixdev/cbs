@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class CompClub {
     static ArrayList<User> users = new ArrayList<>();
     static ArrayList<Computer> computers = new ArrayList<>();
+
     public static void main(String[] args) { 
         printWelcome();
         Scanner scanf = new Scanner(System.in);
@@ -38,7 +39,7 @@ public class CompClub {
             }
         }
     }
-    public static void printWelcome() {
+    private static void printWelcome() {
         System.out.println("\n" + //
                 "\n" + //
                 " __       __            __                                                      __                       ______    ______   __       __   ______  \n" + //
@@ -53,7 +54,7 @@ public class CompClub {
                 "\n" + //
                 "\n");
     }
-    public static void printOptions() {
+    private static void printOptions() {
         System.out.println();
         System.out.println("Select operation:");
         System.out.println("1 - Create new user");
@@ -67,7 +68,7 @@ public class CompClub {
         System.out.print("input: ");
     }
 
-    public static void createUser() {
+    private static void createUser() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter your username: ");
         String nickname = scan.nextLine();
@@ -76,18 +77,22 @@ public class CompClub {
         return;
     }
 
-    public static void listUsers() {
+    private static void listUsers() {
         System.out.println("id | username | balance");
         for (int i=0; i < users.size(); i++) {
             System.out.println(i + " " + users.get(i));
         }
     }
 
-    public static void replenishBalance() {
+    private static void replenishBalance() {
         Scanner scan = new Scanner(System.in);
         User user = getUser();
         System.out.print("How much money you want to add: ");
         long money = scan.nextLong();
+        if (money <= 0) {
+            System.out.println("You can't add negative or null values to balance");
+            return;
+        }
         user.setMoney(money);
     }
 
@@ -117,27 +122,42 @@ public class CompClub {
         }
         System.out.print("How many hours do you want to book: ");
         long hours = scan.nextInt();
+        if (hours <= 0) {
+            System.out.println("You can't use negative or null values");
+            return;
+        }
         Computer computer = new Computer(user, isVip, hours);
+        if (computer.getHoursLeft() == 0) {
+            return;
+        }
         computers.add(computer);
     }
 
-    public static void extendSession() {
+    private static void extendSession() {
         Scanner scan = new Scanner(System.in);
         User user = getUser();
         System.out.print("For how long do you want to extend session: ");
         long hours = scan.nextLong();
+        if (hours <= 0) {
+            System.out.println("You can't use negative or null values");
+            return;
+        }
         Computer computer = user.getComputer();
         computer.setHours(user, computer.getHoursLeft()+hours);
     }
 
-    public static User getUser() {
+    private static User getUser() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Type id of your account: ");
-            int id = scan.nextInt();
+        int id = scan.nextInt();
+        while (id < 0 && id >= users.size()) {
+            System.out.printf("There is no user with id %v", id);
+            id = scan.nextInt();
+        }
         return users.get(Math.toIntExact(id));
     }
 
-    public static void listComputers() {
+    private static void listComputers() {
         System.out.println("user | is vip | hours left");
         for (int i=0; i < computers.size(); i++) {
             System.out.println(computers.get(i));

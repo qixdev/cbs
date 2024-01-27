@@ -1,8 +1,8 @@
-public class User {
+class User {
     private String nickname;
     private long money;
     private Computer computer;
-   // private int id;
+    //private int id;
 
     User(String nickname) {
         this.nickname = nickname;
