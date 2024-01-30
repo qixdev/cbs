@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CompClub {
+    static ArrayList<admin> admins = new ArrayList<>();
     static ArrayList<User> users = new ArrayList<>();
     static ArrayList<Computer> computers = new ArrayList<>();
 
@@ -29,6 +30,9 @@ public class CompClub {
                     break;
                 case "6":
                     listUsers();
+                    break;
+                case "7":
+                    AdminPanel();
                     break;
                 case "exit":
                     scanf.close();
@@ -63,6 +67,7 @@ public class CompClub {
         System.out.println("4 - Extend a session");
         System.out.println("5 - List computers");
         System.out.println("6 - List users");
+        System.out.println("7 - Admin Panel");
         System.out.println("exit - to exit");
         System.out.println();
         System.out.print("input: ");
@@ -93,7 +98,7 @@ public class CompClub {
             System.out.println("You can't add negative or null values to balance");
             return;
         }
-        user.setMoney(money);
+        user.GiveMoney(money);
     }
 
     public static void bookComputer() {
@@ -132,7 +137,22 @@ public class CompClub {
         }
         computers.add(computer);
     }
-
+    private static void AdminPanel()
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Write the password to the admin panel:");
+        String line = scan.nextLine();
+        String password = "1234";
+        String[] string = new String[0];
+        if (line.equals(password)) {
+            admin AdminPanel = new admin();
+            admin.main(string);
+        }
+        else {
+            CompClub compclub = new CompClub();
+            CompClub.main(string);
+        }
+    }
     private static void extendSession() {
         Scanner scan = new Scanner(System.in);
         User user = getUser();
