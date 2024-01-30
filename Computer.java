@@ -39,7 +39,7 @@ class Computer {
         }
         setTaken(true);
         setUser(user);
-        user.setMoney(user.getMoney() - hours * this.rentCost);
+        user.GiveMoney(user.getMoney() - hours * this.rentCost);
         this.hoursLeft = hours;
     }
 
