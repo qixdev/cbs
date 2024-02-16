@@ -5,6 +5,7 @@ public class admin {
     static ArrayList<User> users = new ArrayList<>();
     static ArrayList<Computer> computers = new ArrayList<>();
     static ArrayList<CompClub> compclub = new ArrayList<>();
+    static ArrayList<HLTVuser> hltv = new ArrayList<>();
     public static void main(String[] args) {
         Scanner scanf = new Scanner(System.in);
         loop: while (true) {
@@ -87,6 +88,18 @@ public class admin {
         return users.get(Math.toIntExact(id));
     }
     private static void ChangeUserType() {
-
+        User user = getUser();
+        HLTVuser hltv = new HLTVuser(null, null);
+        Scanner scan = new Scanner(System.in);
+        String answer = scan.nextLine();
+        String Yes = "Yes";
+        System.out.print("Do you want to give this user permission of hltv user?Type: Yes or No");
+        if(answer.equals(Yes))
+        {
+            Scanner scanf = new Scanner(System.in);
+            String link = scanf.nextLine();
+            System.out.print("Write the link below:");
+            hltv.changeLink(link);
+        }
     }
 }
